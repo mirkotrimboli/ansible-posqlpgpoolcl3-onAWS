@@ -1,0 +1,4 @@
+datadev_name: nvme1n1
+postgresql_dir: "/postgresql"
+postgresql_data: "/postgresql/pg_data"
+postgresql_arc: "/postgresql/archive"

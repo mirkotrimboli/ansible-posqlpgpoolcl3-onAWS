@@ -1,0 +1,5 @@
+---
+- hosts: posqlpgpool_cluster
+  become: yes
+  roles:
+    - { role: posqlpgpool_packages, tags: [ 'setup', 'packages' ] }
