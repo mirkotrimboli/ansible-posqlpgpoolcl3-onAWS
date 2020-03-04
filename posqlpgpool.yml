@@ -3,3 +3,4 @@
   become: yes
   roles:
     - { role: posqlpgpool_packages, tags: [ 'setup', 'packages' ] }
+    - { role: posqlpgpool_filesystem, tags: [ 'setup'] }
