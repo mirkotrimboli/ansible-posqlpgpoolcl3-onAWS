@@ -4,6 +4,7 @@ Delivery of a PostgreSQL+PgPool Cluster with 3 nodes on AWS
 # Prerequisiti AWS
 Assicurarsi che sulle macchine sia presente:
 
+* Un volume aggiuntivo per i dati
 * Service Group con regole Inbound aperte per la connessione SSH
 * che sia stato dato un ip alla scheda di rete
 
