@@ -1,0 +1,28 @@
+---
+- name: Make sure PostgreSQL is stopped and disabled
+  systemd:
+    name: postgresql-11
+    enabled: no
+    state: stopped
+  tags: prerequisite
+
+- name: Make sure PgPool-II is stopped and disabled
+  systemd:
+    name: pgpool
+    enabled: no
+    state: stopped
+  tags: prerequisite
+
+- name: Ensure SELinux is set to disabled mode
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=disabled
+  tags: prerequisite
+
+- name: Update postgres user password
+  user:
+    name: postgres
+    password: postgres
+  become: yes
+  tags: prerequisite
