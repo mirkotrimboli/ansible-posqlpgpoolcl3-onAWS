@@ -1,3 +1,4 @@
+---
 - name: Create partition for LVM
   parted:
     device: "/dev/{{datadev_name}}"
@@ -7,6 +8,7 @@
     part_start: 0%
     part_end: 100%
   register: lvm_format
+  tags: prerequisite
 
 - name: Create volume group
   lvg:
@@ -15,6 +17,7 @@
     state: present
   when: lvm_format|succeeded
   register: vg_create
+  tags: prerequisite
 
 - name: Create logical volume
   lvol:
@@ -25,6 +28,7 @@
     state: present
   when: vg_create|succeeded
   register: lv_create
+  tags: prerequisite
 
 - name: Format volume with XFS
   filesystem: 
@@ -32,6 +36,7 @@
     dev: /dev/vg_postgresql/lv_postgresql
   when: lv_create|succeeded
   register: xfs_format
+  tags: prerequisite
 
 - name: Crea directory per mount postgresql dir
   file:
@@ -40,7 +45,8 @@
     group: postgres
     state: directory
   when: xfs_format|succeeded
-  register: dir_created 
+  register: dir_created
+  tags: prerequisite 
    
 - name: Edit fstab and mount the XFS volume
   mount:
@@ -51,6 +57,7 @@
     state: mounted
   when: dir_created |succeeded
   register: mounted
+  tags: prerequisite
 
 - name: Crea directory per mount postgresql data
   file:
@@ -59,7 +66,8 @@
     group: postgres
     state: directory
   when: xfs_format|succeeded
-  register: dir_created 
+  register: dir_created
+  tags: prerequisite 
 
 - name: Crea directory per mount postgresql archive
   file:
@@ -68,4 +76,5 @@
     group: postgres
     state: directory
   when: xfs_format|succeeded
-  register: dir_created 
+  register: dir_created
+  tags: prerequisite
