@@ -3,43 +3,49 @@
   yum:
     name: '*'
     state: latest
+  tags: prerequisite
 
 - name: Install LVM
   yum:
     name: lvm2.x86_64
     state: present
+  tags: prerequisite
 
 - name: Add repository for PostgreSQL
   yum:
     name: https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/pgdg-centos11-11-2.noarch.rpm
     state: present
+  tags: prerequisite
 
 - name: Install PostgreSQL server packages
   yum:
-    name:
-      - postgresql11
-      - postgresql11-server.x86_64
-      - postgresql11-contrib.x86_64
-      - postgresql11-devel.x86_64
-      - postgresql11-libs.x86_64
-      - postgresql11-plperl.x86_64
-      - postgresql11-debuginfo.x86_64
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - postgresql11
+    - postgresql11-server.x86_64
+    - postgresql11-contrib.x86_64
+    - postgresql11-devel.x86_64
+    - postgresql11-libs.x86_64
+    - postgresql11-plperl.x86_64
+    - postgresql11-debuginfo.x86_64
     state: present
+  tags: prerequisite
 
 - name: Add repository for PgPool II
   yum:
     name: http://www.pgpool.net/yum/rpms/4.1/redhat/rhel-7-x86_64/pgpool-II-release-4.1-1.noarch.rpm
     state: present
+  tags: prerequisite
 
 - name: Install PgPool II server packages
   yum:
-    name:
-      - pgpool-II-pg11
-      - pgpool-II-pg11-devel.x86_64
-      - pgpool-II-pg11-extensions.x86_64
-      - pgpool-II-pg11-debuginfo.x86_64
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - pgpool-II-pg11
+    - pgpool-II-pg11-devel.x86_64
+    - pgpool-II-pg11-extensions.x86_64
+    - pgpool-II-pg11-debuginfo.x86_64
     state: present
-
-- command: systemctl disable postgresql-11.service
-
-- command: systemctl disable pgpool.service
+  tags: prerequisite
