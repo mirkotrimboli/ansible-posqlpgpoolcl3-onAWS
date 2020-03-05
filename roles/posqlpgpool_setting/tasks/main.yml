@@ -34,6 +34,9 @@
     line: Environment=PGDATA=/postgresql/pg_data
   tags: prerequisite
 
+- command: systemctl daemon-reload
+  tags: prerequisite
+
 - command: /usr/pgsql-11/bin/postgresql-11-setup initdb postgresql-11
   become: yes
   tags: prerequisite
