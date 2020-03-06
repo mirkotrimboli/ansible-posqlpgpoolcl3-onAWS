@@ -34,9 +34,25 @@
     line: Environment=PGDATA=/postgresql/pg_data
   tags: prerequisite
 
-- command: systemctl daemon-reload
+- name: Reloading daemons
+  command: systemctl daemon-reload
   tags: prerequisite
 
-- command: /usr/pgsql-11/bin/postgresql-11-setup initdb postgresql-11
+- name: Check if /postgresql/pg_data is empty - Exit if not
+  find:
+    paths: [/postgresql/pg_data]
+    patterns: '*.*'
+  register: foundFiles
+  tags: prerequisite
+
+- name: Thinking to do
+  debug:
+    msg: "Install files found. Exiting playbook"
+  when: foundFiles.matched > 2
+  tags: prerequisite
+
+- name: No files detected - Install code
+  shell: /usr/pgsql-11/bin/postgresql-11-setup initdb postgresql-11
+  when: foundFiles.matched < 4
   become: yes
   tags: prerequisite
