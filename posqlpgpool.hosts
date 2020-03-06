@@ -1,2 +1,9 @@
-[posqlpgpool_cluster]
-tst-db[01:03] ansible_user=centos
+[master]
+tst-db01 ansible_user=centos
+
+[slave]
+tst-db[02:03] ansible_user=centos
+
+[posqlpgpool_cluster:children]
+master
+slave
