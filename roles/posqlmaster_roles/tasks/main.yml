@@ -6,31 +6,26 @@
     state: started
   tags: configuration
 
-- name: Configure port for postgres user
-  command: psql -U postgres -p 5433
-  become_user: postgres
+- name: Create pgpool role
+  postgresql_user:
+    name: pgpool
+    password: ""
+    port: 5433
+    role_attr_flags: LOGIN
+    state: present
   tags: configuration
 
-- name: Create pgpool role with grant
-  shell: CREATE ROLE pgpool WITH LOGIN;
+- name: Create repl role
+  postgresql_user:
+    name: repl
+    password: ""
+    port: 5433
+    role_attr_flags: REPLICATION,LOGIN
+    state: present
   tags: configuration
 
-- name: Create repl role with grant
-  shell: CREATE ROLE repl WITH REPLICATION LOGIN;
-  tags: configuration
-
-- name: Password for pgpool
-  command: \password pgpool
-  tags: configuration
-
-- name: Password for repl
-  command: \password repl
-  tags: configuration
-
-- name: Password for postgres
-  command: \password postgres
-  tags: configuration
-
-- name: GRANT pg_monitor TO pgpool
-  command: GRANT pg_monitor TO pgpool;
-  tags: configuration
+- name: Grant role pg_monitor to pgpool
+  postgresql_membership:
+    group: pg_monitor
+    target_roles: pgpool
+    state: present    
