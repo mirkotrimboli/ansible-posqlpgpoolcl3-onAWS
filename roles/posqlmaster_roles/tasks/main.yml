@@ -1,0 +1,24 @@
+---
+- name: Configure port for postgres user
+  postgresql_user:
+    name: postgres
+    port: 5433
+  tags: configuration
+
+- name: Create pgpool role with grant
+  command: CREATE ROLE pgpool WITH LOGIN
+  become_user: postgres
+  tags: configuration
+
+- name: Create repl role with grant
+  command: CREATE ROLE repl WITH REPLICATION LOGIN
+  become_user: postgres
+  tags: configuration
+
+- name: GRANT pg_monitor TO pgpool
+  postgresql_membership:
+    group: pg_monitor
+    target_roles:
+    - pgpool
+    state: present
+  tags: configuration

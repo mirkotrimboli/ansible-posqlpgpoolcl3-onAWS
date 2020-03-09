@@ -10,3 +10,4 @@
   become: yes
   roles:
     - { role: posqlmaster_conf, tags: [ 'configuration' ] }
+    - { role: posqlmaster_roles, tags: [ 'configuration' ] }
