@@ -1,24 +1,36 @@
 ---
+- name: Make sure PostgreSQL is started but disabled
+  systemd:
+    name: postgresql-11
+    enabled: no
+    state: started
+  tags: configuration
+
 - name: Configure port for postgres user
-  postgresql_user:
-    name: postgres
-    port: 5433
+  command: psql -U postgres -p 5433
+  become_user: postgres
   tags: configuration
 
 - name: Create pgpool role with grant
-  command: CREATE ROLE pgpool WITH LOGIN
-  become_user: postgres
+  shell: CREATE ROLE pgpool WITH LOGIN;
   tags: configuration
 
 - name: Create repl role with grant
-  command: CREATE ROLE repl WITH REPLICATION LOGIN
-  become_user: postgres
+  shell: CREATE ROLE repl WITH REPLICATION LOGIN;
+  tags: configuration
+
+- name: Password for pgpool
+  command: \password pgpool
+  tags: configuration
+
+- name: Password for repl
+  command: \password repl
+  tags: configuration
+
+- name: Password for postgres
+  command: \password postgres
   tags: configuration
 
 - name: GRANT pg_monitor TO pgpool
-  postgresql_membership:
-    group: pg_monitor
-    target_roles:
-    - pgpool
-    state: present
+  command: GRANT pg_monitor TO pgpool;
   tags: configuration
