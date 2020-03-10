@@ -28,4 +28,3 @@
   postgresql_membership:
     group: pg_monitor
     target_roles: pgpool
-    state: present    
