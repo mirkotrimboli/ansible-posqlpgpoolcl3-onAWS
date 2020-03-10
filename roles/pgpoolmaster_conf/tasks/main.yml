@@ -1,0 +1,140 @@
+---
+- name: Add local--replication--replication--trust
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: local
+    users: replication
+    source: 10.206.210.170/32
+    databases: replication
+    method: trust
+    state: present
+
+- name: Add host--postgres--replicator--master--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: replicator
+    source: 10.206.210.170/32
+    databases: postgres
+    method: md5
+    state: present
+
+- name: Add host--postgres--replicator--slave01--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: replicator
+    source: 10.206.210.176/32
+    databases: postgres
+    method: md5
+    state: present
+
+- name: Add host--postgres--replicator--slave02--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: replicator
+    source: 10.206.210.185/32
+    databases: postgres
+    method: md5
+    state: present
+
+- name: Add host--all--pgpool--internet--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: pgpool
+    source: 0.0.0.0/0
+    databases: all
+    method: md5
+    state: present
+
+- name: Add host--replication--replicator--master--reject
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: replicator
+    source: 10.206.210.170/32
+    databases: replication
+    method: reject
+    state: present
+
+- name: Add host--replication--replicator--slave01--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: replicator
+    source: 10.206.210.176/32
+    databases: replication
+    method: md5
+    state: present
+
+- name: Add host--replication--replicator--slave02--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: replicator
+    source: 10.206.210.185/32
+    databases: replication
+    method: md5
+    state: present
+
+- name: Add host--replication--repl--master--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: repl
+    source: 10.206.210.170/32
+    databases: replication
+    method: md5
+    state: present
+
+- name: Add host--replication--repl--slave01--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: repl
+    source: 10.206.210.176/32
+    databases: replication
+    method: md5
+    state: present
+
+- name: Add host--replication--repl--slave02--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: repl
+    source: 10.206.210.185/32
+    databases: replication
+    method: md5
+    state: present
+
+- name: Add host--all--postgres--master--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: postgres
+    source: 10.206.210.170/32
+    databases: all
+    method: md5
+    state: present
+
+- name: Add host--all--postgres--slave01--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: postgres
+    source: 10.206.210.176/32
+    databases: all
+    method: md5
+    state: present
+
+- name: Add host--all--postgres--slave02--md5
+  postgresql_pg_hba:
+    dest: /postgresql/pg_data/pg_hba.conf
+    contype: host
+    users: postgres
+    source: 10.206.210.185/32
+    databases: all
+    method: md5
+    state: present
