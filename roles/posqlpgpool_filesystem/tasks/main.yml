@@ -15,7 +15,7 @@
     vg: vg_postgresql
     pvs: "/dev/{{datadev_name}}p1"
     state: present
-  when: lvm_format|succeeded
+  when: lvm_format is succeeded
   register: vg_create
   tags: prerequisite
 
@@ -26,7 +26,7 @@
     size: 100%VG
     active: yes
     state: present
-  when: vg_create|succeeded
+  when: vg_create is succeeded
   register: lv_create
   tags: prerequisite
 
@@ -34,7 +34,7 @@
   filesystem: 
     fstype: xfs 
     dev: /dev/vg_postgresql/lv_postgresql
-  when: lv_create|succeeded
+  when: lv_create is succeeded
   register: xfs_format
   tags: prerequisite
 
@@ -44,7 +44,7 @@
     owner: postgres
     group: postgres
     state: directory
-  when: xfs_format|succeeded
+  when: xfs_format is succeeded
   register: dir_created
   tags: prerequisite 
    
@@ -55,7 +55,7 @@
     fstype: xfs
     opts: "noatime"
     state: mounted
-  when: dir_created |succeeded
+  when: dir_created is succeeded
   register: mounted
   tags: prerequisite
 
@@ -65,7 +65,7 @@
     owner: postgres
     group: postgres
     state: directory
-  when: xfs_format|succeeded
+  when: xfs_format is succeeded
   register: dir_created
   tags: prerequisite 
 
@@ -75,6 +75,6 @@
     owner: postgres
     group: postgres
     state: directory
-  when: xfs_format|succeeded
+  when: xfs_format is succeeded
   register: dir_created
   tags: prerequisite

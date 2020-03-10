@@ -19,7 +19,6 @@
 - name: Create repl role
   postgresql_user:
     name: repl
-    password: ""
     port: 5433
     role_attr_flags: REPLICATION,LOGIN
     state: present
@@ -29,5 +28,10 @@
 
 - name: Grant role pg_monitor to pgpool
   postgresql_membership:
+    port: 5433
     group: pg_monitor
-    target_roles: pgpool
+    target_role: pgpool
+    state: present
+  become: true
+  become_user: postgres
+  tags: configuration
