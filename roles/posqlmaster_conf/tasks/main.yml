@@ -2,80 +2,89 @@
 - name: Change listener in postgresql.conf 
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#listen_addresses'
+    regexp: 'listen_addresses'
     line: listen_addresses = '*'
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change port in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#port'
+    regexp: 'port'
     line: port = 5433
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Uncomment unix_socked_directories in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#unix_socket_directories'
+    regexp: 'unix_socket_directories'
     line: unix_socket_directories = '/var/run/postgresql, /tmp'
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change wal_level in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#wal_level'
+    regexp: 'wal_level'
     line: wal_level = hot_standby
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change wal_log_hints in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#wal_log_hints'
+    regexp: 'wal_log_hints'
     line: wal_log_hints = on
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change archive_mode in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#archive_mode'
+    regexp: 'archive_mode'
     line: archive_mode = on
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change archive_command in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#archive_command'
+    regexp: 'archive_command'
     line: archive_command = 'cp -i "%p" "/postgresql/archive/%f"'
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change max_wal_senders in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#max_wal_senders'
+    regexp: 'max_wal_senders'
     line: max_wal_senders = 10
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
 
 - name: Change hot_standby in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: '^#hot_standby'
+    regexp: 'hot_standby'
     line: hot_standby = on
     owner: postgres
     group: postgres
     mode: '0600'
+    state: present
