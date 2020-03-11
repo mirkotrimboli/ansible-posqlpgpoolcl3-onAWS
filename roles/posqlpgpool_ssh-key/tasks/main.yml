@@ -20,3 +20,14 @@
     mode: '0600'
     backup: yes
 
+- name: Create file .pgpass
+  copy:
+    dest: /var/lib/pgsql/.pgpass
+    content: |
+      *:*:*:postgres:postgres
+      *:*:replication:repl:repl
+      *:*:*:pgpool:pgpool
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    backup: yes

@@ -9,6 +9,7 @@
 - name: Create pgpool role
   postgresql_user:
     name: pgpool
+    password: pgpool
     port: 5433
     role_attr_flags: LOGIN
     state: present
@@ -19,8 +20,20 @@
 - name: Create repl role
   postgresql_user:
     name: repl
+    password: repl
     port: 5433
     role_attr_flags: REPLICATION,LOGIN
+    state: present
+  become: true
+  become_user: postgres
+  tags: configuration
+
+- name: Create postgres role
+  postgresql_user:
+    name: postgres
+    password: postgres
+    port: 5433
+    role_attr_flags: LOGIN
     state: present
   become: true
   become_user: postgres
