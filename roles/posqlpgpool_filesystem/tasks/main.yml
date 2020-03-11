@@ -38,7 +38,7 @@
   register: xfs_format
   tags: prerequisite
 
-- name: Crea directory per mount postgresql dir
+- name: Create directory for mount postgresql dir
   file:
     path: "{{postgresql_dir}}"
     owner: postgres
@@ -59,7 +59,7 @@
   register: mounted
   tags: prerequisite
 
-- name: Crea directory per mount postgresql data
+- name: Create directory for mount postgresql data
   file:
     path: "{{postgresql_data}}"
     owner: postgres
@@ -69,7 +69,7 @@
   register: dir_created
   tags: prerequisite 
 
-- name: Crea directory per mount postgresql archive
+- name: Create directory for mount postgresql archive
   file:
     path: "{{postgresql_arc}}"
     owner: postgres

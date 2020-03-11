@@ -1,11 +1,11 @@
 ---
-- name: Set authorized key taken from file
+- name: Set authorized key taken from file for root
   authorized_key:
     user: root
     state: present
     key: "{{ lookup('file', 'cluster_key/pgpool.pem.pub') }}"
 
-- name: Set authorized key taken from file
+- name: Set authorized key taken from file for postgres
   authorized_key:
     user: postgres
     state: present
