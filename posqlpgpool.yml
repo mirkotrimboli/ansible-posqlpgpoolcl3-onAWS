@@ -5,6 +5,7 @@
     - { role: posqlpgpool_packages, tags: [ 'prerequisite' ] }
     - { role: posqlpgpool_filesystem, tags: [ 'prerequisite' ] }
     - { role: posqlpgpool_setting, tags: [ 'prerequisite' ] }
+    - { role: posqlpgpool_ssh-key, tags: [ 'prerequisite' ] }
 
 - hosts: master
   become: yes
