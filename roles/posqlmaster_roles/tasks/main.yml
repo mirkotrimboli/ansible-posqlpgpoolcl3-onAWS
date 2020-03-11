@@ -35,3 +35,9 @@
   become: true
   become_user: postgres
   tags: configuration
+
+- name: Create keypair for ssh access without password
+  openssh_keypair:
+    path: ~/.ssh/id_rsa_pgpool
+  become: yes
+  tags: configuration

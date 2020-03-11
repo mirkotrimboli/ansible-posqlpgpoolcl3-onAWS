@@ -1,0 +1,12 @@
+---
+- name: Set authorized key taken from file
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '~/.ssh/pgpool.pem.pub') }}"
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: postgres
+    state: present
+    key: "{{ lookup('file', '~/.ssh/pgpool.pem.pub') }}"

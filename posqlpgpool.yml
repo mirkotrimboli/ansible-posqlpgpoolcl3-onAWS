@@ -11,4 +11,5 @@
   roles:
     - { role: posqlmaster_conf, tags: [ 'configuration' ] }
     - { role: posqlmaster_roles, tags: [ 'configuration' ] }
+    - { role: pgpoolmaster_conf, tags: [ 'configuration' ] }
     
