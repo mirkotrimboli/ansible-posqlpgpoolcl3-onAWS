@@ -3,10 +3,19 @@
   authorized_key:
     user: root
     state: present
-    key: "{{ lookup('file', '~/.ssh/id_rsa_pgpool.pub') }}"
+    key: "{{ lookup('file', 'cluster_key/pgpool.pem.pub') }}"
 
 - name: Set authorized key taken from file
   authorized_key:
     user: postgres
     state: present
-    key: "{{ lookup('file', '~/.ssh/id_rsa_pgpool.pub') }}"
+    key: "{{ lookup('file', 'cluster_key/pgpool.pem.pub') }}"
+
+- name: Copy key into place, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/cluster_key/pgpool.pem
+    dest: /root/.ssh/id_rsa
+    owner: root
+    group: root
+    mode: '0600'
+    backup: yes
