@@ -2,15 +2,15 @@
 - hosts: posqlpgpool_cluster
   become: yes
   roles:
-    - { role: posqlpgpool_packages, tags: [ 'prerequisite' ] }
-    - { role: posqlpgpool_filesystem, tags: [ 'prerequisite' ] }
-    - { role: posqlpgpool_setting, tags: [ 'prerequisite' ] }
-    - { role: posqlpgpool_ssh-key, tags: [ 'prerequisite' ] }
+    - { role: cluster_packages, tags: [ 'prerequisite' ] }
+    - { role: cluster_filesystem, tags: [ 'prerequisite' ] }
+    - { role: cluster_setting, tags: [ 'prerequisite' ] }
+    - { role: cluster_ssh-key, tags: [ 'prerequisite' ] }
 
 - hosts: master
   become: yes
   roles:
-    - { role: posqlmaster_conf, tags: [ 'configuration' ] }
-    - { role: posqlmaster_roles, tags: [ 'configuration' ] }
-    - { role: pgpoolmaster_conf, tags: [ 'configuration' ] }
+    - { role: master_postgresqlconf, tags: [ 'configuration' ] }
+    - { role: master_postgresqlroles, tags: [ 'configuration' ] }
+    - { role: master_pghbaconf, tags: [ 'configuration' ] }
     

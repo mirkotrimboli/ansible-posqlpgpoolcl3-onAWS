@@ -1,0 +1,58 @@
+---
+- name: Make sure PostgreSQL is stopped and disabled
+  systemd:
+    name: postgresql-11
+    enabled: no
+    state: stopped
+  tags: prerequisite
+
+- name: Make sure PgPool-II is stopped and disabled
+  systemd:
+    name: pgpool
+    enabled: no
+    state: stopped
+  tags: prerequisite
+
+- name: Ensure SELinux is set to disabled mode
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=disabled
+  tags: prerequisite
+
+- name: Update postgres user password
+  user:
+    name: postgres
+    password: postgres
+  become: yes
+  tags: prerequisite
+
+- name: Change variable for postgresql-11.service
+  lineinfile:
+    path: /usr/lib/systemd/system/postgresql-11.service
+    regexp: '^Environment=PGDATA='
+    line: Environment=PGDATA=/postgresql/pg_data
+  tags: prerequisite
+
+- name: Reloading daemons
+  command: systemctl daemon-reload
+  tags: prerequisite
+
+- name: Check if /postgresql/pg_data is empty - Exit if not
+  find:
+    paths: [/postgresql/pg_data]
+    patterns: '*.*'
+  register: foundFiles
+  tags: prerequisite
+
+- name: Thinking to do
+  debug:
+    msg: "Install files found. Exiting playbook"
+  when: foundFiles.matched > 2
+  tags: prerequisite
+
+- name: No files detected - Install code
+  shell: /usr/pgsql-11/bin/postgresql-11-setup initdb postgresql-11
+  when: foundFiles.matched < 4
+  become: yes
+  tags: prerequisite
