@@ -19,7 +19,7 @@
     mode: '0600'
     state: present
 
-- name: Uncomment unix_socked_directories in postgresql.conf
+- name: Change unix_socked_directories in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
     regexp: 'unix_socket_directories'
