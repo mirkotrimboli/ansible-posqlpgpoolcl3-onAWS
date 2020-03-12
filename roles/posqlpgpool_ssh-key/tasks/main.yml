@@ -1,4 +1,15 @@
 ---
+- name: Add mappings to /etc/hosts
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ item.ip }} {{ item.name }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+  loop:
+    - { name: tst-db01, ip: 10.206.210.170 }
+    - { name: tst-db02, ip: 10.206.210.176 }
+    - { name: tst-db03, ip: 10.206.210.185 }
+
 - name: Set authorized key taken from file for root
   authorized_key:
     user: root
