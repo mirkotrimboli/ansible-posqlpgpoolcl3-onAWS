@@ -68,3 +68,13 @@
 - name: Create entry in pool_passwd for pgpool
   command: pg_md5 -m -u pgpool pgpool
   tags: prerequisite
+
+- name: Create file .pcppass
+  copy:
+    dest: /root/.pcppass
+    content: |
+      localhost:9898:pgpool:pgpool
+    owner: root
+    group: root
+    mode: '0600'
+    backup: yes
