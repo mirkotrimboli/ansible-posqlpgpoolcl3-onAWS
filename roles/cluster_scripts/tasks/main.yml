@@ -1,0 +1,18 @@
+---
+- name: Copy failover.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/failover.sh
+    dest: /etc/pgpool-II/failover.sh
+    owner: postgres
+    group: postgres
+    mode: '0777'
+    backup: yes
+
+- name: Copy follow_master.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/follow_master.sh
+    dest: /etc/pgpool-II/follow_master.sh
+    owner: postgres
+    group: postgres
+    mode: '0777'
+    backup: yes

@@ -13,4 +13,24 @@
     - { role: master_postgresqlconf, tags: [ 'configuration' ] }
     - { role: master_postgresqlroles, tags: [ 'configuration' ] }
     - { role: master_pghbaconf, tags: [ 'configuration' ] }
-    
+
+- hosts: posqlpgpool_cluster
+  become: yes
+  roles:
+    - { role: cluster_pgpoolconf, tags: [ 'configure' ] }
+    - { role: cluster_scripts, tags: [ 'configure' ] }
+
+- hosts: master
+  become: yes
+  roles:
+    - { role: master_pgpoolconf, tags: [ 'hierarchies' ] }
+
+- hosts: 1st_slave
+  become: yes
+  roles:
+    - { role: 1st_slave_pgpoolconf, tags: [ 'hierarchies' ] }
+
+- hosts: 2nd_slave
+  become: yes
+  roles:
+    - { role: 2nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }   
