@@ -48,3 +48,10 @@
   become: true
   become_user: postgres
   tags: configuration
+
+- name: Create extension pgpool_recovery
+  postgresql_ext:
+    name: pgpool_recovery
+    db: template1
+    state: present
+  tags: configuration
