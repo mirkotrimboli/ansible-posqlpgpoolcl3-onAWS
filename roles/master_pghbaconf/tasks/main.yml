@@ -1,5 +1,5 @@
 ---
-- name: Add local--replication--replication--trust
+- name: Add local--replication--replication--trust in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: local
@@ -9,7 +9,7 @@
     method: trust
     state: present
 
-- name: Add host--postgres--replicator--master--md5
+- name: Add host--postgres--replicator--master--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -19,7 +19,7 @@
     method: md5
     state: present
 
-- name: Add host--postgres--replicator--slave01--md5
+- name: Add host--postgres--replicator--slave01--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -29,7 +29,7 @@
     method: md5
     state: present
 
-- name: Add host--postgres--replicator--slave02--md5
+- name: Add host--postgres--replicator--slave02--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -39,7 +39,7 @@
     method: md5
     state: present
 
-- name: Add host--all--pgpool--internet--md5
+- name: Add host--all--pgpool--internet--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -49,7 +49,7 @@
     method: md5
     state: present
 
-- name: Add host--replication--replicator--master--reject
+- name: Add host--replication--replicator--master--reject in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -59,7 +59,7 @@
     method: reject
     state: present
 
-- name: Add host--replication--replicator--slave01--md5
+- name: Add host--replication--replicator--slave01--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -69,7 +69,7 @@
     method: md5
     state: present
 
-- name: Add host--replication--replicator--slave02--md5
+- name: Add host--replication--replicator--slave02--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -79,7 +79,7 @@
     method: md5
     state: present
 
-- name: Add host--replication--repl--master--md5
+- name: Add host--replication--repl--master--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -89,7 +89,7 @@
     method: md5
     state: present
 
-- name: Add host--replication--repl--slave01--md5
+- name: Add host--replication--repl--slave01--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -99,7 +99,7 @@
     method: md5
     state: present
 
-- name: Add host--replication--repl--slave02--md5
+- name: Add host--replication--repl--slave02--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -109,7 +109,7 @@
     method: md5
     state: present
 
-- name: Add host--all--postgres--master--md5
+- name: Add host--all--postgres--master--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -119,7 +119,7 @@
     method: md5
     state: present
 
-- name: Add host--all--postgres--slave01--md5
+- name: Add host--all--postgres--slave01--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
@@ -129,12 +129,42 @@
     method: md5
     state: present
 
-- name: Add host--all--postgres--slave02--md5
+- name: Add host--all--postgres--slave02--md5 in pg_hba.conf
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
     users: postgres
     source: 10.206.210.185/32
+    databases: all
+    method: md5
+    state: present
+
+- name: Add host--all--pgpool--internet--md5 in pool_hba.conf
+  postgresql_pg_hba:
+    dest: /etc/pgpool-II/pool_hba.conf
+    contype: host
+    users: pgpool
+    source: 0.0.0.0/0
+    databases: all
+    method: md5
+    state: present
+
+- name: Add host--all--postgres--internet--md5 in pool_hba.conf
+  postgresql_pg_hba:
+    dest: /etc/pgpool-II/pool_hba.conf
+    contype: host
+    users: postgres
+    source: 0.0.0.0/0
+    databases: all
+    method: md5
+    state: present
+
+- name: Add host--all--repl--internet--md5 in pool_hba.conf
+  postgresql_pg_hba:
+    dest: /etc/pgpool-II/pool_hba.conf
+    contype: host
+    users: repl
+    source: 0.0.0.0/0
     databases: all
     method: md5
     state: present

@@ -1,4 +1,10 @@
 ---
+- name: Create extension pgpool_recovery
+  postgresql_ext:
+    name: pgpool_recovery
+    db: template1
+    state: present
+
 - name: Change wd_hostname in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
