@@ -336,7 +336,7 @@
 - name: Change if_up_cmd in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: "if_up_cmd = '/usr/bin/sudo /sbin/ip addr add $_IP_$/24 dev eth0 label eth0:0'"
+    regexp: 'if_up_cmd'
     line: if_up_cmd = '/usr/bin/sudo /sbin/ip addr add $_IP_$/24 dev ens5 label ens5:0'
     owner: postgres
     group: postgres
@@ -346,7 +346,7 @@
 - name: Change if_down_cmd in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: "if_down_cmd = '/usr/bin/sudo /sbin/ip addr del $_IP_$/24 dev eth0'"
+    regexp: 'if_down_cmd'
     line: if_down_cmd = '/usr/bin/sudo /sbin/ip addr del $_IP_$/24 dev ens5'
     owner: postgres
     group: postgres
@@ -356,7 +356,7 @@
 - name: Change arping_cmd in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: "arping_cmd = '/usr/bin/sudo /usr/sbin/arping -U $_IP_$ -w 1 -I eth0'"
+    regexp: 'arping_cmd'
     line: arping_cmd = '/usr/bin/sudo /usr/sbin/arping -U $_IP_$ -w 1 -I ens5'
     owner: postgres
     group: postgres
