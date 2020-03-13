@@ -25,12 +25,12 @@
   roles:
     - { role: master_pgpoolconf, tags: [ 'hierarchies' ] }
 
-- hosts: 1st_slave
+- hosts: st_slave
   become: yes
   roles:
-    - { role: 1st_slave_pgpoolconf, tags: [ 'hierarchies' ] }
+    - { role: st_slave_pgpoolconf, tags: [ 'hierarchies' ] }
 
-- hosts: 2nd_slave
+- hosts: nd_slave
   become: yes
   roles:
-    - { role: 2nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }   
+    - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }   
