@@ -1,23 +1,12 @@
 ---
-- name: Change listener in pgpool.conf 
-  lineinfile:
+- name: Change listener in pgpool.conf
+  replace:
     path: /etc/pgpool-II/pgpool.conf
     regexp: "listen_addresses = 'localhost'"
-    line: listen_addresses = '*'
+    replace: listen_addresses = '*'
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
-
-- name: Change listener in pgpool.conf 
-  lineinfile:
-    path: /etc/pgpool-II/pgpool.conf
-    regexp: "listen_addresses = 'localhost'"
-    line: listen_addresses = '*'
-    owner: postgres
-    group: postgres
-    mode: '0600'
-    state: present
 
 - name: Change port in pgpool.conf
   lineinfile:
@@ -240,54 +229,49 @@
     state: present
 
 - name: Change health_check_period in pgpool.conf
-  lineinfile:
+  replace:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: 'health_check_period'
-    line: health_check_period = 5
+    regexp: 'health_check_period = 0'
+    replace: health_check_period = 5
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
 
 - name: Change health_check_timeout in pgpool.conf
-  lineinfile:
+  replace:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: 'health_check_timeout'
-    line: health_check_timeout = 30
+    regexp: 'health_check_timeout = 20'
+    replace: health_check_timeout = 30
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
 
 - name: Change health_check_user in pgpool.conf
-  lineinfile:
+  replace:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: 'health_check_user'
-    line: health_check_user = 'pgpool'
+    regexp: "health_check_user = 'nobody'"
+    replace: health_check_user = 'pgpool'
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
 
 - name: Change health_check_password in pgpool.conf
-  lineinfile:
+  replace:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: 'health_check_password'
-    line: health_check_password = 'pgpool'
+    regexp: "health_check_password = ''"
+    replace: health_check_password = 'pgpool'
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
 
 - name: Change health_check_max_retries in pgpool.conf
-  lineinfile:
+  replace:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: 'health_check_max_retries'
-    line: health_check_max_retries = 3
+    regexp: 'health_check_max_retries = 0'
+    replace: health_check_max_retries = 3
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
 
 - name: Change failover_command in pgpool.conf
   lineinfile:
