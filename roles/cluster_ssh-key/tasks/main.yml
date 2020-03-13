@@ -42,3 +42,29 @@
     group: postgres
     mode: '0600'
     backup: yes
+
+- name: Add postgres md5 code in pcp.conf
+  lineinfile:
+    path: /etc/pgpool-II/pcp.conf
+    line: postgres:e8a48653851e28c69d0506508fb27fc5
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
+- name: Add pgpool md5 code in pcp.conf
+  lineinfile:
+    path: /etc/pgpool-II/pcp.conf
+    line: pgpool:ba777e4c2f15c11ea8ac3be7e0440aa0
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
+- name: Create entry in pool_passwd for postgres
+  command: pg_md5 -m -u postgres postgres
+  tags: prerequisite
+
+- name: Create entry in pool_passwd for pgpool
+  command: pg_md5 -m -u pgpool pgpool
+  tags: prerequisite

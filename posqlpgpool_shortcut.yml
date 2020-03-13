@@ -1,4 +1,4 @@
-- hosts: posqlpgpool_cluster
+- hosts: master
   become: yes
   roles:
-    - { role: cluster_scripts, tags: [ 'configure' ] }
+    - { role: master_pgpoolconf, tags: [ 'configure' ] }
