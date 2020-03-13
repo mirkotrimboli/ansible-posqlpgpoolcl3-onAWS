@@ -168,3 +168,10 @@
     databases: all
     method: md5
     state: present
+
+- name: Create extension pgpool_recovery
+  postgresql_ext:
+    name: pgpool_recovery
+    db: template1
+    state: present
+  tags: configuration
