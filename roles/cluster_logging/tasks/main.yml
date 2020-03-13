@@ -1,0 +1,9 @@
+---
+- name: Change OPTS in sysconfig/pgpool
+  replace:
+    path: /etc/sysconfig/pgpool
+    regexp: 'OPTS=" -n'
+    replace: OPTS=" -D -n
+    owner: postgres
+    group: postgres
+    mode: '0600'

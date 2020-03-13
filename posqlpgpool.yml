@@ -19,6 +19,7 @@
   roles:
     - { role: cluster_pgpoolconf, tags: [ 'configure' ] }
     - { role: cluster_scripts, tags: [ 'configure' ] }
+    - { role: cluster_logging, tags: [ 'configure' ] }
 
 - hosts: master
   become: yes
