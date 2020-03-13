@@ -48,3 +48,13 @@
   become: true
   become_user: postgres
   tags: configuration
+
+- name: Create extension pgpool_recovery
+  postgresql_ext:
+    port: 5433
+    name: pgpool_recovery
+    db: template1
+    state: present
+  become: true
+  become_user: postgres
+  tags: configuration
