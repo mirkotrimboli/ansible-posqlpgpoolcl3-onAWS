@@ -1,15 +1,15 @@
 [master]
 tst-db01 ansible_user=centos
 
-[1st_slave]
+[st_slave]
 tst-db02 ansible_user=centos
 
-[2nd_slave]
+[nd_slave]
 tst-db03 ansible_user=centos
 
 [slave:children]
-1st_slave
-2nd_slave
+st_slave
+nd_slave
 
 [posqlpgpool_cluster:children]
 master
