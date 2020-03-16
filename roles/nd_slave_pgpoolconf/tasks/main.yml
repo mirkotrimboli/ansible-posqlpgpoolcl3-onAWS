@@ -3,7 +3,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'wd_hostname'
-    line: wd_hostname = 'tst-db02'
+    line: wd_hostname = '10.206.210.176'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -13,7 +13,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'other_pgpool_hostname0'
-    line: other_pgpool_hostname0 = 'tst-db01'
+    line: other_pgpool_hostname0 = '10.206.210.170'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -43,7 +43,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'other_pgpool_hostname1'
-    line: other_pgpool_hostname1 = 'tst-db03'
+    line: other_pgpool_hostname1 = '10.206.210.185'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -73,7 +73,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'heartbeat_destination0'
-    line: heartbeat_destination0 = 'tst-db01'
+    line: heartbeat_destination0 = '10.206.210.170'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -103,7 +103,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'heartbeat_destination1'
-    line: heartbeat_destination1 = 'tst-db03'
+    line: heartbeat_destination1 = '10.206.210.185'
     owner: postgres
     group: postgres
     mode: '0600'
