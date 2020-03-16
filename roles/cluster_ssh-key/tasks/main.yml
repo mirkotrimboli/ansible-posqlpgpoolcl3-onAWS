@@ -22,12 +22,21 @@
     state: present
     key: "{{ lookup('file', 'cluster_key/pgpool.pem.pub') }}"
 
-- name: Copy key into place, backing up the original if it differs from the copied version
+- name: Copy key for root, backing up the original if it differs from the copied version
   copy:
     src: /home/centos/ansible-posqlpgpoolcl3/cluster_key/pgpool.pem
     dest: /root/.ssh/id_rsa
     owner: root
     group: root
+    mode: '0600'
+    backup: yes
+
+- name: Copy key for postgres, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/cluster_key/pgpool.pem
+    dest: /var/lib/pgsql/.ssh/id_rsa
+    owner: postgres
+    group: postgres
     mode: '0600'
     backup: yes
 
