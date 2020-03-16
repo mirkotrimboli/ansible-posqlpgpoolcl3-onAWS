@@ -26,5 +26,5 @@
 - name: Insert KillSignal entry in /usr/lib/systemd/system/pgpool.service
   lineinfile:
     path: /usr/lib/systemd/system/pgpool.service
-    insertafter: '^ExecReload'
+    insertafter: '^KillMode=mixed'
     line: 'KillSignal=SIGINT'
