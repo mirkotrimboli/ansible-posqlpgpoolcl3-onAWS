@@ -20,6 +20,7 @@
     - { role: cluster_pgpoolconf, tags: [ 'configuration' ] }
     - { role: cluster_scripts, tags: [ 'configuration' ] }
     - { role: cluster_logging, tags: [ 'configuration' ] }
+    - { role: cluster_pgservice, tags: [ 'configuration' ] }
 
 - hosts: master
   become: yes
@@ -34,4 +35,4 @@
 - hosts: nd_slave
   become: yes
   roles:
-    - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }   
+    - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }

@@ -78,3 +78,12 @@
     group: root
     mode: '0600'
     backup: yes
+
+- name: Add postgres in /etc/sudoers
+  lineinfile:
+    path: /etc/sudoers
+    line: "postgres        ALL=(ALL)       NOPASSWD: ALL"
+    owner: root
+    group: root
+    mode: '0440'
+    state: present
