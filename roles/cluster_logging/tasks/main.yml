@@ -27,14 +27,13 @@
     access_time: preserve
 
 - name: Change entry in /etc/rsyslog.conf
-  lineinfile:
+  replace:
     path: /etc/rsyslog.conf
-    regexp: '*.info;mail.none;authpriv.none;cron.none'
-    line: '*.info;mail.none;authpriv.none;cron.none;LOCAL1.none    /var/log/messages'
+    regexp: ".info;mail.none;authpriv.none;cron.none                /var/log/messages"
+    replace: ".info;mail.none;authpriv.none;cron.none;LOCAL1.none    /var/log/messages"
     owner: postgres
     group: postgres
     mode: '0600'
-    state: present
 
 - name: Add entry in /etc/rsyslog.conf
   lineinfile:

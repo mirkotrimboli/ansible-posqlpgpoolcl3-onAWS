@@ -1,4 +1,4 @@
 - hosts: posqlpgpool_cluster
   become: yes
   roles:
-    - { role: cluster_logging, tags: [ 'configure' ] }
+    - { role: cluster_logging, tags: [ 'configuration' ] }

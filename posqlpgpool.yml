@@ -17,9 +17,9 @@
 - hosts: posqlpgpool_cluster
   become: yes
   roles:
-    - { role: cluster_pgpoolconf, tags: [ 'configure' ] }
-    - { role: cluster_scripts, tags: [ 'configure' ] }
-    - { role: cluster_logging, tags: [ 'configure' ] }
+    - { role: cluster_pgpoolconf, tags: [ 'configuration' ] }
+    - { role: cluster_scripts, tags: [ 'configuration' ] }
+    - { role: cluster_logging, tags: [ 'configuration' ] }
 
 - hosts: master
   become: yes
