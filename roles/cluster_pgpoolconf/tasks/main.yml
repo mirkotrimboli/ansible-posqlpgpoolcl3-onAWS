@@ -208,6 +208,16 @@
     mode: '0600'
     state: present
 
+- name: Change logdir in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'logdir'
+    line: logdir = '/var/log/pgpool-II/'
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
 - name: Change sr_check_user in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
