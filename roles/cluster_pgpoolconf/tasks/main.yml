@@ -382,3 +382,13 @@
     group: postgres
     mode: '0600'
     state: present
+
+- name: Change pool_passwd in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'pool_passwd'
+    line: pool_passwd = '/etc/pgpool-II/pool_passwd'
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
