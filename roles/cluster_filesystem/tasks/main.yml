@@ -64,6 +64,7 @@
     path: "{{postgresql_data}}"
     owner: postgres
     group: postgres
+    mode: '0750'
     state: directory
   when: xfs_format is succeeded
   register: dir_created
@@ -74,6 +75,7 @@
     path: "{{postgresql_arc}}"
     owner: postgres
     group: postgres
+    mode: '0750'
     state: directory
   when: xfs_format is succeeded
   register: dir_created

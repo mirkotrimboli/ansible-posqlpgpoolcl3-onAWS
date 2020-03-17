@@ -14,6 +14,7 @@
     - { role: master_postgresqlconf, tags: [ 'configuration' ] }
     - { role: master_postgresqlroles, tags: [ 'configuration' ] }
     - { role: master_pghbaconf, tags: [ 'configuration' ] }
+    - { role: master_scripts, tags: [ 'configuration' ] }
 
 - hosts: posqlpgpool_cluster
   become: yes
