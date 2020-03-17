@@ -79,6 +79,15 @@
     mode: '0600'
     state: present
 
+- name: Add repl md5 code in pcp.conf
+  lineinfile:
+    path: /etc/pgpool-II/pcp.conf
+    line: repl:c3121723f31b44a9900cce919dd71ea3
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
 - name: Create entry in pool_passwd for postgres
   command: pg_md5 -m -u postgres postgres
   tags: prerequisite
