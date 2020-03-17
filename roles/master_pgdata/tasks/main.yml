@@ -1,0 +1,19 @@
+---
+- name: Check if /postgresql/pg_data is empty - Exit if not
+  find:
+    paths: [/postgresql/pg_data]
+    patterns: '*.*'
+  register: foundedFiles
+  tags: prerequisite
+
+- name: Thinking to do
+  debug:
+    msg: "Install files found. Skipping"
+  when: foundedFiles.matched > 2
+  tags: prerequisite
+
+- name: No files detected - Install code
+  shell: /usr/pgsql-11/bin/postgresql-11-setup initdb postgresql-11
+  when: foundedFiles.matched < 4
+  become: yes
+  tags: prerequisite
