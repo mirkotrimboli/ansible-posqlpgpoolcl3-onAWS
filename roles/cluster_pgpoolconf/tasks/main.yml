@@ -372,3 +372,13 @@
     group: postgres
     mode: '0600'
     state: present
+
+- name: Change delegate_IP in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'delegate_IP'
+    line: delegate_IP = '10.206.197.26'
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
