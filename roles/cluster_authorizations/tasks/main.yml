@@ -96,13 +96,27 @@
   command: pg_md5 -m -u pgpool pgpool
   tags: prerequisite
 
-- name: Create file .pcppass
+- name: Create entry in pool_passwd for repl
+  command: pg_md5 -m -u repl repl
+  tags: prerequisite
+
+- name: Create file .pcppass for root
   copy:
     dest: /root/.pcppass
     content: |
       localhost:9898:pgpool:pgpool
     owner: root
     group: root
+    mode: '0600'
+    backup: yes
+
+- name: Create file .pcppass for postgres
+  copy:
+    dest: /var/lib/pgsql/.pcppass
+    content: |
+      localhost:9898:pgpool:pgpool
+    owner: postgres
+    group: postgres
     mode: '0600'
     backup: yes
 

@@ -228,15 +228,15 @@
     mode: '0600'
     state: present
 
-- name: Change sr_check_password in pgpool.conf
-  lineinfile:
-    path: /etc/pgpool-II/pgpool.conf
-    regexp: 'sr_check_password'
-    line: sr_check_password = 'pgpool'
-    owner: postgres
-    group: postgres
-    mode: '0600'
-    state: present
+#- name: Change sr_check_password in pgpool.conf
+#  lineinfile:
+#    path: /etc/pgpool-II/pgpool.conf
+#    regexp: 'sr_check_password'
+#    line: sr_check_password = 'pgpool'
+#    owner: postgres
+#    group: postgres
+#    mode: '0600'
+#    state: present
 
 - name: Change health_check_period in pgpool.conf
   replace:
@@ -265,14 +265,14 @@
     group: postgres
     mode: '0600'
 
-- name: Change health_check_password in pgpool.conf
-  replace:
-    path: /etc/pgpool-II/pgpool.conf
-    regexp: "health_check_password = ''"
-    replace: health_check_password = 'pgpool'
-    owner: postgres
-    group: postgres
-    mode: '0600'
+#- name: Change health_check_password in pgpool.conf
+#  replace:
+#    path: /etc/pgpool-II/pgpool.conf
+#    regexp: "health_check_password = ''"
+#    replace: health_check_password = 'pgpool'
+#    owner: postgres
+#    group: postgres
+#    mode: '0600'
 
 - name: Change health_check_max_retries in pgpool.conf
   replace:
@@ -313,15 +313,15 @@
     mode: '0600'
     state: present
 
-- name: Change recovery_password in pgpool.conf
-  lineinfile:
-    path: /etc/pgpool-II/pgpool.conf
-    regexp: 'recovery_password'
-    line: recovery_password = 'postgres'
-    owner: postgres
-    group: postgres
-    mode: '0600'
-    state: present
+#- name: Change recovery_password in pgpool.conf
+#  lineinfile:
+#    path: /etc/pgpool-II/pgpool.conf
+#    regexp: 'recovery_password'
+#    line: recovery_password = 'postgres'
+#    owner: postgres
+#    group: postgres
+#    mode: '0600'
+#    state: present
 
 - name: Change recovery_1st_stage_command in pgpool.conf
   lineinfile:
@@ -386,7 +386,7 @@
 - name: Change pool_passwd in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
-    regexp: 'pool_passwd'
+    regexp: "pool_passwd = 'pool_passwd'"
     line: pool_passwd = '/etc/pgpool-II/pool_passwd'
     owner: postgres
     group: postgres

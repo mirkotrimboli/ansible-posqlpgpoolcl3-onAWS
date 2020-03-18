@@ -19,15 +19,15 @@
     mode: '0600'
     state: present
 
-- name: Change unix_socked_directories in postgresql.conf
-  lineinfile:
-    path: /postgresql/pg_data/postgresql.conf
-    regexp: 'unix_socket_directories'
-    line: unix_socket_directories = '/var/run/postgresql, /tmp'
-    owner: postgres
-    group: postgres
-    mode: '0600'
-    state: present
+#- name: Change unix_socked_directories in postgresql.conf
+#  lineinfile:
+#    path: /postgresql/pg_data/postgresql.conf
+#    regexp: 'unix_socket_directories'
+#    line: unix_socket_directories = '/var/run/postgresql, /tmp'
+#    owner: postgres
+#    group: postgres
+#    mode: '0600'
+#    state: present
 
 - name: Change wal_level in postgresql.conf
   lineinfile:
