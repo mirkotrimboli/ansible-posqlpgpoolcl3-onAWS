@@ -49,11 +49,18 @@
   lineinfile:
     path: /etc/logrotate.d/syslog
     regexp: '/var/log/pgpool-II'
+    insertafter: "^/var/log/spooler"
     line: '/var/log/pgpool-II/pgpool.log'
     owner: root
     group: root
     mode: '0644'
     state: present
+
+- name: Insert KillMode entry in /usr/lib/systemd/system/pgpool.service
+  lineinfile:
+    path: /usr/lib/systemd/system/pgpool.service
+    insertafter: '^ExecReload'
+    line: 'KillMode=mixed'
 
 - name: restart service rsyslog, also issue daemon-reload to pick up config changes
   systemd:

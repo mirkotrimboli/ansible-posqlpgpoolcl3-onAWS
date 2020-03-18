@@ -218,6 +218,26 @@
     mode: '0600'
     state: present
 
+- name: Change syslog_facility in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'syslog_facility'
+    line: syslog_facility = 'LOCAL1'
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
+- name: Change log_destination in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'log_destination'
+    line: log_destination = 'syslog'
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
 - name: Change sr_check_user in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
