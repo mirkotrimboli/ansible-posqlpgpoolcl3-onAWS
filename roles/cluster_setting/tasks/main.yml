@@ -34,6 +34,16 @@
     line: Environment=PGDATA=/postgresql/pg_data
   tags: prerequisite
 
+- name: Create file post.sh
+  copy:
+    dest: /etc/profile.d/post.sh
+    content: |
+      export PATH=$PATH:/usr/pgsql-11/:/usr/pgsql-11/bin:/usr/pgsql-11/lib:/usr/pgsql-11/
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
 - name: Reloading daemons
   command: systemctl daemon-reload
   tags: prerequisite

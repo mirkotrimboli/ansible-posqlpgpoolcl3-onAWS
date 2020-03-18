@@ -1,0 +1,11 @@
+---
+- name: Reloading daemons
+  command: systemctl daemon-reload
+  tags: beginning
+
+- name: Make sure PgPool-II is started and enabled
+  systemd:
+    name: pgpool
+    enabled: yes
+    state: started
+  tags: beginning

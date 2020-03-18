@@ -5,19 +5,10 @@
     - { role: cluster_packages, tags: [ 'prerequisite' ] }
     - { role: cluster_filesystem, tags: [ 'prerequisite' ] }
     - { role: cluster_authorizations, tags: [ 'prerequisite' ] }
-    - { role: cluster_services, tags: [ 'prerequisite' ] }
+    - { role: cluster_setting, tags: [ 'prerequisite' ] }
     - { role: cluster_pgdata, tags: [ 'prerequisite' ] }
     - { role: cluster_postgresqlconf, tags: [ 'configuration' ] }
-
-- hosts: master
-  become: yes
-  roles:
-    - { role: master_postgresqlroles, tags: [ 'configuration' ] }
-    - { role: master_pghbaconf, tags: [ 'configuration' ] }
-
-- hosts: posqlpgpool_cluster
-  become: yes
-  roles:
+    - { role: cluster_pghbaconf, tags: [ 'configuration' ] }
     - { role: cluster_poolhbaconf, tags: [ 'configuration' ] }
     - { role: cluster_pgpoolconf, tags: [ 'configuration' ] }
     - { role: cluster_scripts, tags: [ 'configuration' ] }
@@ -27,6 +18,7 @@
 - hosts: master
   become: yes
   roles:
+    - { role: master_postgresqlroles, tags: [ 'configuration' ] }
     - { role: master_pgpoolconf, tags: [ 'hierarchies' ] }
 
 - hosts: st_slave
@@ -38,3 +30,13 @@
   become: yes
   roles:
     - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }
+
+- hosts: posqlpgpool_cluster
+  become: yes
+  roles:
+    - { role: cluster_pgstart, tags: [ 'beginning' ] }
+
+- hosts: master
+  become: yes
+  roles:
+    - { role: master_posqlstart, tags: [ 'beginning' ] }

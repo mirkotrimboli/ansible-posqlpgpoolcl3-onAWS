@@ -1,0 +1,7 @@
+---
+- name: Make sure PostgreSQL is started and enabled
+  systemd:
+    name: postgresql-11
+    enabled: yes
+    state: started
+  tags: beginning

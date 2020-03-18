@@ -57,3 +57,10 @@
   become: true
   become_user: postgres
   tags: configuration
+
+- name: Make sure PostgreSQL is stopped and disabled
+  systemd:
+    name: postgresql-11
+    enabled: no
+    state: stopped
+  tags: configuration
