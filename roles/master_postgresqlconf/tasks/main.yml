@@ -12,7 +12,7 @@
 - name: Change port in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: 'port'
+    regexp: '#port = 5432'
     line: port = 5433
     owner: postgres
     group: postgres

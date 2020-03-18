@@ -28,7 +28,6 @@
     - postgresql11-devel.x86_64
     - postgresql11-libs.x86_64
     - postgresql11-plperl.x86_64
-    - postgresql11-debuginfo.x86_64
     - python-psycopg2
     state: present
   tags: prerequisite

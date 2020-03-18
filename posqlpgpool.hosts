@@ -1,11 +1,11 @@
 [master]
-tst-db01 ansible_user=centos
+pgposql01 ansible_user=centos
 
 [st_slave]
-tst-db02 ansible_user=centos
+pgposql02 ansible_user=centos
 
 [nd_slave]
-tst-db03 ansible_user=centos
+pgposql03 ansible_user=centos
 
 [slave:children]
 st_slave

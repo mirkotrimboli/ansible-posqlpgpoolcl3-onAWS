@@ -22,7 +22,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'backend_hostname0'
-    line: backend_hostname0 = 'tstdb01'
+    line: backend_hostname0 = 'pgposql01'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -52,7 +52,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'backend_application_name0'
-    line: backend_application_name0 = 'tstdb01'
+    line: backend_application_name0 = 'pgposql01'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -62,7 +62,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'backend_hostname1'
-    line: backend_hostname1 = 'tstdb02'
+    line: backend_hostname1 = 'pgposql02'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -112,7 +112,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'backend_application_name1'
-    line: backend_application_name1 = 'tstdb02'
+    line: backend_application_name1 = 'pgposql02'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -122,7 +122,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'backend_hostname2'
-    line: backend_hostname2 = 'tstdb03'
+    line: backend_hostname2 = 'pgposql03'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -172,7 +172,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'backend_application_name2'
-    line: backend_application_name2 = 'tstdb03'
+    line: backend_application_name2 = 'pgposql03'
     owner: postgres
     group: postgres
     mode: '0600'
