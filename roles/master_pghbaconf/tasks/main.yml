@@ -13,8 +13,8 @@
   postgresql_pg_hba:
     dest: /postgresql/pg_data/pg_hba.conf
     contype: host
-    users: replication
+    users: all
     source: samenet
-    databases: all
+    databases: replication
     method: md5
     state: present

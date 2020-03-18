@@ -82,7 +82,7 @@
 - name: Change hot_standby in postgresql.conf
   lineinfile:
     path: /postgresql/pg_data/postgresql.conf
-    regexp: 'hot_standby'
+    regexp: '#hot_standby'
     line: hot_standby = on
     owner: postgres
     group: postgres
