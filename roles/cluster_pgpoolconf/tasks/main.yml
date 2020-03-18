@@ -238,6 +238,26 @@
     mode: '0600'
     state: present
 
+- name: Change master_slave_mode in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'master_slave_mode'
+    line: master_slave_mode = on
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
+- name: Change sr_check_period in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'sr_check_period'
+    line: sr_check_period = 5
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
 - name: Change sr_check_user in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
