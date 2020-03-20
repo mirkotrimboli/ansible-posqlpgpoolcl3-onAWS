@@ -417,7 +417,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'delegate_IP'
-    line: delegate_IP = ''
+    line: delegate_IP = '10.206.210.170'
     owner: postgres
     group: postgres
     mode: '0600'
