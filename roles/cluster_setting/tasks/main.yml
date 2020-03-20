@@ -45,5 +45,6 @@
     backup: yes
 
 - name: Reloading daemons
-  command: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes
   tags: prerequisite
