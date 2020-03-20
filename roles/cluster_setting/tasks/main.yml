@@ -20,13 +20,6 @@
     line: SELINUX=disabled
   tags: prerequisite
 
-- name: Update postgres user password
-  user:
-    name: postgres
-    password: postgres
-  become: yes
-  tags: prerequisite
-
 - name: Change variable for postgresql-11.service
   lineinfile:
     path: /usr/lib/systemd/system/postgresql-11.service

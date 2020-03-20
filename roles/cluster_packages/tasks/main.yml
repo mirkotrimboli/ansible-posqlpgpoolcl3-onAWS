@@ -49,3 +49,9 @@
     - pgpool-II-pg11-debuginfo.x86_64
     state: present
   tags: prerequisite
+
+- name: Upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+  tags: prerequisite
