@@ -34,3 +34,21 @@
     group: postgres
     mode: '0777'
     backup: yes
+
+- name: Copy aws-escalation.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/aws-escalation.sh
+    dest: /postgresql/pg_data/aws-escalation.sh
+    owner: postgres
+    group: postgres
+    mode: '0777'
+    backup: yes
+
+- name: Copy aws-de-escalation.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/aws-de-escalation.sh
+    dest: /postgresql/pg_data/aws-de-escalation.sh
+    owner: postgres
+    group: postgres
+    mode: '0777'
+    backup: yes
