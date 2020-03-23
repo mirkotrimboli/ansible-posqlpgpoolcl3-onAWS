@@ -50,6 +50,18 @@
     state: present
   tags: prerequisite
 
+- name: Add repository for PostGIS
+  yum:
+    name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+    state: present
+  tags: prerequisite
+
+- name: Install PostGIS server packages
+  yum:
+    name: postgis25_11
+    state: present
+  tags: prerequisite
+
 - name: Upgrade all packages
   yum:
     name: '*'

@@ -423,6 +423,26 @@
     mode: '0600'
     state: present
 
+- name: Change wd_escalation_command in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'wd_escalation_command'
+    line: wd_escalation_command = ''
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
+- name: Change wd_de_escalation_command in pgpool.conf
+  lineinfile:
+    path: /etc/pgpool-II/pgpool.conf
+    regexp: 'wd_de_escalation_command'
+    line: wd_de_escalation_command = ''
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    state: present
+
 - name: Change pool_passwd in pgpool.conf
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
