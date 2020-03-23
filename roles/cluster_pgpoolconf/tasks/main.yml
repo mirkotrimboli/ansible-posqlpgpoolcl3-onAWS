@@ -417,7 +417,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'delegate_IP'
-    line: delegate_IP = '10.206.210.170'
+    line: delegate_IP = ''
     owner: postgres
     group: postgres
     mode: '0600'
@@ -427,7 +427,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'wd_escalation_command'
-    line: wd_escalation_command = ''
+    line: wd_escalation_command = '/postgresql/pg_data/aws-escalation.sh'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -437,7 +437,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'wd_de_escalation_command'
-    line: wd_de_escalation_command = ''
+    line: wd_de_escalation_command = '/postgresql/pg_data/aws-de-escalation.sh'
     owner: postgres
     group: postgres
     mode: '0600'
