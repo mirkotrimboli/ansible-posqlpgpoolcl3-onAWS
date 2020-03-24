@@ -11,6 +11,6 @@ pgposql03 ansible_user=centos
 st_slave
 nd_slave
 
-[posqlpgpool_cluster:children]
+[cluster:children]
 master
 slave

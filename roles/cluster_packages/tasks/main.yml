@@ -14,7 +14,7 @@
     mode: '0644'
   tags: prerequisite
 
-- name: Execute install in remote shell
+- name: Execute aws/install in remote shell
   shell: ./aws/install
 
 - name: Install LVM2

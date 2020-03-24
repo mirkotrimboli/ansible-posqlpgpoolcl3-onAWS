@@ -1,26 +1,25 @@
 # ansible-posqlpgpoolcl3-onAWS
 Delivery of a PostgreSQL+PgPool Cluster with 3 nodes on AWS
 
-# Prerequisiti AWS
-Assicurarsi che sulle macchine sia presente:
+# AWS prerequisites
+Make sure that the AWS environment has:
 
-* Un volume aggiuntivo per i dati
-* Service Group con regole Inbound aperte per la connessione SSH
-* che sia stato dato un ip alla scheda di rete
+* An additional data volume associated with each node
+* Service Group with open Inbound rules for SSH connection
+* that an ip was given to the primary network card
+* that a NetworkInterface not associated with any node has been created
 
-Sul server Ansible:
-* Fare il download con git clone
-* All'interno dell'inventory path inserire la "chiave.pem" per l'accesso in SSH
-* Modificare il file hosts del server ansible aggiungendo gli ip degli host da raggiungere e nominandoli come specificato in posqlpgpool.hosts
+On the Ansible server:
 
-# Installazione e configurazione iniziale dei nodi 
-se necessario modificare le variabili sotto group_vars/all/vars.yml
+* Download with git clone
+* Inside the inventory path insert the "key.pem" for access in SSH
+* Modify the hosts file of the ansible server by adding the ip of the hosts to reach and naming them as specified in posqlpgpool.hosts
 
-* datadev_name: nvme1n1
-* postgresql_dir: "/postgresql"
-* postgresql_data: "/postgresql/pg_data"
-* postgresql_arc: "/postgresql/archive"
+# Installation and initial configuration of the nodes
 
-lanciare il playbook ansible con il comando:
+* check the variable in group_vars / all / vars.yml
+* if necessary change the values of the variables according to your environment
+
+launch the ansible playbook with the command:
 
 * ansible-playbook -i posqlpgpool.hosts posqlpgpool.yml --key-file=./chiave.pem --user=centos

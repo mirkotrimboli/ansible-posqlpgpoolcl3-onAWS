@@ -1,5 +1,5 @@
 ---
-- hosts: posqlpgpool_cluster
+- hosts: cluster
   become: yes
   roles:
     - { role: cluster_packages, tags: [ 'prerequisite' ] }
@@ -34,7 +34,7 @@
     - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }
     - { role: nd_slave_script, tags: [ 'hierarchies' ] }
 
-- hosts: posqlpgpool_cluster
+- hosts: cluster
   become: yes
   roles:
     - { role: cluster_pgstart, tags: [ 'beginning' ] }
