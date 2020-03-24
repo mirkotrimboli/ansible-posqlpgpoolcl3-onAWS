@@ -88,17 +88,29 @@
     mode: '0600'
     state: present
 
-- name: Create entry in pool_passwd for postgres
-  command: pg_md5 -m -u postgres postgres
-  tags: prerequisite
+- name: Create file pool_passwd in /etc/pgpool-II/pool_passwd
+  copy:
+    dest: /etc/pgpool-II/pool_passwd
+    content: |
+      postgres:postgres
+      pgpool:pgpool
+      repl:repl
+    owner: postgres
+    group: postgres
+    mode: '0600'
+    backup: yes
 
-- name: Create entry in pool_passwd for pgpool
-  command: pg_md5 -m -u pgpool pgpool
-  tags: prerequisite
+#- name: Create entry in pool_passwd for postgres
+#  command: pg_md5 -m -u postgres postgres
+#  tags: prerequisite
 
-- name: Create entry in pool_passwd for repl
-  command: pg_md5 -m -u repl repl
-  tags: prerequisite
+#- name: Create entry in pool_passwd for pgpool
+#  command: pg_md5 -m -u pgpool pgpool
+#  tags: prerequisite
+
+#- name: Create entry in pool_passwd for repl
+#  command: pg_md5 -m -u repl repl
+#  tags: prerequisite
 
 - name: Create file .pcppass for root
   copy:

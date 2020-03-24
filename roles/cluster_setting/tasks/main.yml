@@ -37,6 +37,16 @@
     mode: '0644'
     backup: yes
 
+- name: Create file aws.sh
+  copy:
+    dest: /etc/profile.d/aws.sh
+    content: |
+      export PATH=$PATH:/usr/local/bin
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
 - name: Reloading daemons
   systemd:
     daemon_reload: yes

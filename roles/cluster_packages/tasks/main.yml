@@ -5,6 +5,18 @@
     state: latest
   tags: prerequisite
 
+- name: Unarchive awscliv2.zip in /root
+  unarchive:
+    src: /home/centos/ansible-posqlpgpoolcl3/awscliv2.zip
+    dest: /root
+    owner: root
+    group: root
+    mode: '0644'
+  tags: prerequisite
+
+- name: Execute install in remote shell
+  shell: ./aws/install
+
 - name: Install LVM2
   yum:
     name: lvm2.x86_64
