@@ -10,3 +10,4 @@ ipnode3: 10.206.210.174
 ipvip: 10.206.210.170
 pri_net_int: ens5
 sec_net_int: eth0
+aws_netint_id: eni-08770b5291f7eee93
