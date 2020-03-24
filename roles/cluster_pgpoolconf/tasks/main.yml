@@ -383,25 +383,25 @@
     mode: '0600'
     state: present
 
-- name: Change if_up_cmd in pgpool.conf
-  lineinfile:
-    path: /etc/pgpool-II/pgpool.conf
-    regexp: 'if_up_cmd'
-    line: if_up_cmd = '/usr/bin/sudo /sbin/ip addr add $_IP_$/24 dev ens5 label ens5:0'
-    owner: postgres
-    group: postgres
-    mode: '0600'
-    state: present
+#- name: Change if_up_cmd in pgpool.conf
+#  lineinfile:
+#    path: /etc/pgpool-II/pgpool.conf
+#    regexp: 'if_up_cmd'
+#    line: if_up_cmd = '/usr/bin/sudo /sbin/ip addr add $_IP_$/24 dev ens5 label ens5:0'
+#    owner: postgres
+#    group: postgres
+#    mode: '0600'
+#    state: present
 
-- name: Change if_down_cmd in pgpool.conf
-  lineinfile:
-    path: /etc/pgpool-II/pgpool.conf
-    regexp: 'if_down_cmd'
-    line: if_down_cmd = '/usr/bin/sudo /sbin/ip addr del $_IP_$/24 dev ens5'
-    owner: postgres
-    group: postgres
-    mode: '0600'
-    state: present
+#- name: Change if_down_cmd in pgpool.conf
+#  lineinfile:
+#    path: /etc/pgpool-II/pgpool.conf
+#    regexp: 'if_down_cmd'
+#    line: if_down_cmd = '/usr/bin/sudo /sbin/ip addr del $_IP_$/24 dev ens5'
+#    owner: postgres
+#    group: postgres
+#    mode: '0600'
+#    state: present
 
 - name: Change arping_cmd in pgpool.conf
   lineinfile:
@@ -427,7 +427,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'wd_escalation_command'
-    line: wd_escalation_command = '/postgresql/pg_data/aws-escalation.sh'
+    line: wd_escalation_command = '/usr/local/bin/aws-escalation.sh'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -437,7 +437,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'wd_de_escalation_command'
-    line: wd_de_escalation_command = '/postgresql/pg_data/aws-de-escalation.sh'
+    line: wd_de_escalation_command = '/usr/local/bin/aws-de-escalation.sh'
     owner: postgres
     group: postgres
     mode: '0600'

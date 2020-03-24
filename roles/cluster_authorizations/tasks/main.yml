@@ -6,9 +6,9 @@
       {{ item.ip }} {{ item.name }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
   loop:
-    - { name: pgposql01, ip: 10.206.210.169 }
-    - { name: pgposql02, ip: 10.206.210.175 }
-    - { name: pgposql03, ip: 10.206.210.174 }
+    - { name: pgposql01, ip: {{ ipnode1 }} }
+    - { name: pgposql02, ip: {{ ipnode2 }} }
+    - { name: pgposql03, ip: {{ ipnode3 }} }
 
 - name: Set authorized key taken from file for root
   authorized_key:
@@ -44,15 +44,15 @@
   copy:
     dest: /var/lib/pgsql/.pgpass
     content: |
-      10.206.210.169:5433:replication:repl:repl
-      10.206.210.175:5433:replication:repl:repl
-      10.206.210.174:5433:replication:repl:repl
-      10.206.210.169:5433:postgres:postgres:postgres
-      10.206.210.175:5433:postgres:postgres:postgres
-      10.206.210.174:5433:postgres:postgres:postgres
-      10.206.210.169:5433:*:pgpool:pgpool
-      10.206.210.175:5433:*:pgpool:pgpool
-      10.206.210.174:5433:*:pgpool:pgpool
+      {{ ipnode1 }}:5433:replication:repl:repl
+      {{ ipnode2 }}:5433:replication:repl:repl
+      {{ ipnode3 }}:5433:replication:repl:repl
+      {{ ipnode1 }}:5433:postgres:postgres:postgres
+      {{ ipnode2 }}:5433:postgres:postgres:postgres
+      {{ ipnode3 }}:5433:postgres:postgres:postgres
+      {{ ipnode1 }}:5433:*:pgpool:pgpool
+      {{ ipnode2 }}:5433:*:pgpool:pgpool
+      {{ ipnode3 }}:5433:*:pgpool:pgpool
       *:*:*:postgres:postgres
       *:*:replication:repl:repl
       *:*:*:pgpool:pgpool

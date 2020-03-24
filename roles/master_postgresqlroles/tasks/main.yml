@@ -58,6 +58,38 @@
   become_user: postgres
   tags: configuration
 
+- name: Create extension pgcrypto
+  postgresql_ext:
+    name: pgcrypto
+    db: postgres
+    state: present
+  become: true
+  become_user: postgres
+  tags: prerequisite
+
+- name: Create a new database with name "postgis"
+  postgresql_db:
+    name: postgis
+  tags: prerequisite
+
+- name: Connect to postgis database and set user's password with no expire date
+  postgresql_user:
+    db: postgis
+    name: postgis
+    password: postgis
+    priv: "CONNECT/products:ALL"
+    expires: infinity
+  tags: prerequisite
+
+- name: Create extension PostGIS
+  postgresql_ext:
+    name: postgis
+    db: postgis
+    state: present
+  become: true
+  become_user: postgis
+  tags: prerequisite
+
 - name: Make sure PostgreSQL is stopped and disabled
   systemd:
     name: postgresql-11

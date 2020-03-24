@@ -20,16 +20,19 @@
   roles:
     - { role: master_postgresqlroles, tags: [ 'configuration' ] }
     - { role: master_pgpoolconf, tags: [ 'hierarchies' ] }
+    - { role: master_script, tags: [ 'hierarchies' ] }
 
 - hosts: st_slave
   become: yes
   roles:
     - { role: st_slave_pgpoolconf, tags: [ 'hierarchies' ] }
+    - { role: st_slave_script, tags: [ 'hierarchies' ] }
 
 - hosts: nd_slave
   become: yes
   roles:
     - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }
+    - { role: nd_slave_script, tags: [ 'hierarchies' ] }
 
 - hosts: posqlpgpool_cluster
   become: yes

@@ -38,17 +38,63 @@
 - name: Copy aws-escalation.sh, backing up the original if it differs from the copied version
   copy:
     src: /home/centos/ansible-posqlpgpoolcl3/scripts/aws-escalation.sh
-    dest: /postgresql/pg_data/aws-escalation.sh
-    owner: postgres
-    group: postgres
-    mode: '0777'
+    dest: /usr/local/bin/aws-escalation.sh
+    owner: root
+    group: root
+    mode: '0755'
     backup: yes
 
 - name: Copy aws-de-escalation.sh, backing up the original if it differs from the copied version
   copy:
     src: /home/centos/ansible-posqlpgpoolcl3/scripts/aws-de-escalation.sh
-    dest: /postgresql/pg_data/aws-de-escalation.sh
-    owner: postgres
-    group: postgres
-    mode: '0777'
+    dest: /usr/local/bin/aws-de-escalation.sh
+    owner: root
+    group: root
+    mode: '0755'
     backup: yes
+
+- name: Copy route-{{ sec_net_int }}.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/route-netint2
+    dest: /etc/sysconfig/network-scripts/route-{{ sec_net_int }}.sh
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: Copy rule-{{ pri_net_int }}.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/rule-netint1
+    dest: /etc/sysconfig/network-scripts/rule-{{ pri_net_int }}.sh
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: Copy rule-{{ sec_net_int }}.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/rule-netint2
+    dest: /etc/sysconfig/network-scripts/rule-{{ sec_net_int }}.sh
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: Copy ifcfg-{{ sec_net_int }}.sh, backing up the original if it differs from the copied version
+  copy:
+    src: /home/centos/ansible-posqlpgpoolcl3/scripts/ifcfg-netint2
+    dest: /etc/sysconfig/network-scripts/ifcfg-{{ sec_net_int }}.sh
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: Insert 100 t1 entry in /usr/lib/systemd/system/pgpool.service
+  lineinfile:
+    path: /etc/iproute2/rt_tables
+    line: '100 t1'
+
+- name: Insert 101 t2 entry in /usr/lib/systemd/system/pgpool.service
+  lineinfile:
+    path: /etc/iproute2/rt_tables
+    line: '101 t2'

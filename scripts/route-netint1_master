@@ -1,0 +1,2 @@
+{{ network }} dev {{ pri_net_int }} src {{ ipnode1 }} table t2
+default via {{ gateway }} dev {{ pri_net_int }} table t2

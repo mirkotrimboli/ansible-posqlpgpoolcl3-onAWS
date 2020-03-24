@@ -29,8 +29,8 @@
 - name: Change entry in /etc/rsyslog.conf
   replace:
     path: /etc/rsyslog.conf
-    regexp: ".info;mail.none;authpriv.none;cron.none                /var/log/messages"
-    replace: ".info;mail.none;authpriv.none;cron.none;LOCAL1.none    /var/log/messages"
+    regexp: '.info;mail.none;authpriv.none;cron.none                /var/log/messages'
+    replace: '.info;mail.none;authpriv.none;cron.none;LOCAL1.none    /var/log/messages'
     owner: root
     group: root
     mode: '0644'
@@ -39,6 +39,7 @@
   lineinfile:
     path: /etc/rsyslog.conf
     regexp: 'LOCAL1.*'
+    insertafter: '.info;mail.none;authpriv.none;cron.none;LOCAL1.none    /var/log/messages'
     line: 'LOCAL1.*                                                /var/log/pgpool-II/pgpool.log'
     owner: root
     group: root
@@ -49,7 +50,7 @@
   lineinfile:
     path: /etc/logrotate.d/syslog
     regexp: '/var/log/pgpool-II'
-    insertafter: "^/var/log/spooler"
+    insertafter: '^/var/log/spooler'
     line: '/var/log/pgpool-II/pgpool.log'
     owner: root
     group: root
