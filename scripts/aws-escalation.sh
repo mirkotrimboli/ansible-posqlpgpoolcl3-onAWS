@@ -5,6 +5,9 @@ INSTANCEID=`/bin/cat /sys/devices/virtual/dmi/id/board_asset_tag`
 
 ###Controllo
 #echo $INSTANCEID
+echo "Wait 5 second before claim vip interface"
+
+sleep 5
 
 echo "Attach VIP Interface"
 /usr/local/bin/aws ec2 attach-network-interface --instance-id $INSTANCEID --network-interface-id eni-08770b5291f7eee93 --device-index 1
