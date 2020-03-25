@@ -1,2 +1,2 @@
-{{ network }} dev {{ pri_net_int }} src {{ ipnode3 }} table t2
-default via {{ gateway }} dev {{ pri_net_int }} table t2
+"{{ network }}" dev "{{ pri_net_int }}" src "{{ ipnode3 }}" table t2
+default via "{{ gateway }}" dev "{{ pri_net_int }}" table t2

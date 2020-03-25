@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTERFACEATTACHID=`/usr/local/bin/aws ec2 describe-network-interfaces --network-interface-ids {{ aws_netint_id }} |grep AttachmentId |awk '{print $2}'|/bin/rev|/bin/cut -c 2-|/bin/rev|cut -d '"' -f 2`
+INTERFACEATTACHID=`/usr/local/bin/aws ec2 describe-network-interfaces --network-interface-ids "{{ aws_netint_id }}" |grep AttachmentId |awk '{print $2}'|/bin/rev|/bin/cut -c 2-|/bin/rev|cut -d '"' -f 2`
 
 #####Per Verfica
 #echo $INTERFACEATTACHID
@@ -8,7 +8,7 @@ INTERFACEATTACHID=`/usr/local/bin/aws ec2 describe-network-interfaces --network-
 
 #####Spegne interfaccia VIP
 echo "Shutdown VIP ethernet Interface"
-/sbin/ifdown {{ sec_net_int }}
+/sbin/ifdown "{{ sec_net_int }}"
 
 
 echo "Detach Network Interface from AWS"
