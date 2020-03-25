@@ -87,26 +87,15 @@
   become_user: postgres
   tags: prerequisite
 
-- name: Connect to postgis database and set user's password with no expire date
-  postgresql_user:
-    port: 5433
-    db: postgis
-    name: postgis
-    password: postgis
-    priv: "CONNECT/products:ALL"
-    expires: infinity
-  become: true
-  become_user: postgres
-  tags: prerequisite
-
 - name: Create extension PostGIS
   postgresql_ext:
     port: 5433
     name: postgis
     db: postgis
+    password: postgis
     state: present
   become: true
-  become_user: postgis
+  become_user: postgres
   tags: prerequisite
 
 - name: Make sure PostgreSQL is stopped and disabled
