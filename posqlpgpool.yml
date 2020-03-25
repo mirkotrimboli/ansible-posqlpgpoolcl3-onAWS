@@ -35,12 +35,7 @@
     - { role: nd_slave_pgpoolconf, tags: [ 'hierarchies' ] }
     - { role: nd_slave_script, tags: [ 'hierarchies' ] }
 
-- hosts: master
+- hosts: cluster
   become: yes
   roles:
-    - { role: master_pgposqlstart, tags: [ 'beginning' ] }
-
-- hosts: slave
-  become: yes
-  roles:
-    - { role: slave_pgposqlstart, tags: [ 'beginning' ] }
+    - { role: cluster_pgposqlstart, tags: [ 'beginning' ] }
