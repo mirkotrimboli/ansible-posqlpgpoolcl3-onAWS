@@ -22,14 +22,14 @@
 
 - name: Check if /usr/local/aws-cli exist - Exit if not
   stat:
-    paths: /usr/local/aws-cli
+    path: /usr/local/aws-cli
   register: foundedDir
   tags: prerequisite
 
 - name: Thinking to do
   debug:
     msg: "Directory exist. Skipping installation"
-  when: foundedDir.stat.isdir is defined and p.stat.isdir
+  when: foundedDir.stat.isdir is defined
   tags: prerequisite
 
 - name: Installing code
@@ -86,6 +86,24 @@
 - name: Add repository for PostGIS
   yum:
     name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+    state: present
+  tags: prerequisite
+
+- name: Install dependencies for PostGIS
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - libdapserver.so.7
+    - libnetcdf.so.7
+    - libdap.so.17
+    - libCharLS.so.1
+    - hdf5
+    - libdapclient.so.6
+    - libfreexl.so.1
+    - libcfitsio.so.2
+    - libhdf5.so.8
+    - libgta.so.0
     state: present
   tags: prerequisite
 
