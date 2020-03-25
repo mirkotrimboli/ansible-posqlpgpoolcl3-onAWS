@@ -7,10 +7,10 @@ gateway: 10.206.210.161
 hostname1: pgpogis01
 hostname2: pgpogis02
 hostname3: pgpogis03
-ipnode1: 10.206.210.169
-ipnode2: 10.206.210.175
-ipnode3: 10.206.210.174
-ipvip: 10.206.210.170
+ipnode1: 10.206.210.171
+ipnode2: 10.206.210.172
+ipnode3: 10.206.210.167
+ipvip: 10.206.210.185
 pri_net_int: ens5
 sec_net_int: eth0
-aws_netint_id: eni-08770b5291f7eee93
+aws_netint_id: eni-0c8d46a7ccd4ac61d
