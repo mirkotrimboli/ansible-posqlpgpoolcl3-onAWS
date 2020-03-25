@@ -1,13 +1,4 @@
 ---
-- name: Change listener in pgpool.conf
-  replace:
-    path: /postgresql/pg_data/postgresql.conf
-    regexp: "^#hot_standby = on"
-    replace: hot_standby = on
-    owner: postgres
-    group: postgres
-    mode: '0600'
-
 - name: Change listener in postgresql.conf 
   replace:
     path: /postgresql/pg_data/postgresql.conf

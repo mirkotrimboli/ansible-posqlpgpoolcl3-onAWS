@@ -89,10 +89,9 @@
 
 - name: Create extension PostGIS
   postgresql_ext:
-    port: 5433
     name: postgis
     db: postgis
-    password: postgis
+    port: 5433
     state: present
   become: true
   become_user: postgres
