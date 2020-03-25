@@ -9,7 +9,7 @@
 - name: Create pgpool role
   postgresql_user:
     name: pgpool
-    password: md5f24aeb1c3b7d05d7eaf2cd648c307092
+    password: pgpool
     port: 5433
     role_attr_flags: LOGIN
     state: present
@@ -20,7 +20,7 @@
 - name: Create repl role
   postgresql_user:
     name: repl
-    password: md58e85cf6ab9baea09e5b6759c7effbf21
+    password: repl
     port: 5433
     role_attr_flags: REPLICATION,LOGIN
     state: present
@@ -31,7 +31,17 @@
 - name: Create postgres role
   postgresql_user:
     name: postgres
-    password: md53175bce1d3201d16594cebf9d7eb3f9d
+    password: postgres
+    port: 5433
+    state: present
+  become: true
+  become_user: postgres
+  tags: configuration
+
+- name: Create postgis role
+  postgresql_user:
+    name: postgis
+    password: postgis
     port: 5433
     state: present
   become: true
@@ -72,6 +82,9 @@
   postgresql_db:
     port: 5433
     name: postgis
+    owner: postgis
+  become: true
+  become_user: postgres
   tags: prerequisite
 
 - name: Connect to postgis database and set user's password with no expire date
@@ -82,6 +95,8 @@
     password: postgis
     priv: "CONNECT/products:ALL"
     expires: infinity
+  become: true
+  become_user: postgres
   tags: prerequisite
 
 - name: Create extension PostGIS
