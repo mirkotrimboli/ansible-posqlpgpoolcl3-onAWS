@@ -1,5 +1,5 @@
 # ansible-posqlpgpoolcl3-onAWS
-Delivery of a PostgreSQL+PgPool Cluster with 3 nodes on AWS
+Delivery of a PostgreSQL+PgPool+postGIS Cluster with 3 nodes on AWS
 
 # AWS prerequisites
 Make sure that the AWS environment has:
@@ -13,6 +13,7 @@ On the Ansible server:
 
 * Download with git clone
 * Inside the inventory path insert the "key.pem" for access in SSH
+* Inside the inventory path, insert the awscliv2.zip package
 * Modify the hosts file of the ansible server by adding the ip of the hosts to reach and naming them as specified in posqlpgpool.hosts
 
 # Installation and initial configuration of the nodes
