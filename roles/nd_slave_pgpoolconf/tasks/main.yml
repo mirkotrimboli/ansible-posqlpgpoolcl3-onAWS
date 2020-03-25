@@ -3,7 +3,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'wd_hostname'
-    line: wd_hostname = 'pgposql03'
+    line: wd_hostname = '{{ hostname3 }}'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -13,7 +13,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'other_pgpool_hostname0'
-    line: other_pgpool_hostname0 = 'pgposql02'
+    line: other_pgpool_hostname0 = '{{ hostname2 }}'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -43,7 +43,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'other_pgpool_hostname1'
-    line: other_pgpool_hostname1 = 'pgposql01'
+    line: other_pgpool_hostname1 = '{{ hostname1 }}'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -73,7 +73,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'heartbeat_destination0'
-    line: heartbeat_destination0 = 'pgposql01'
+    line: heartbeat_destination0 = '{{ hostname1 }}'
     owner: postgres
     group: postgres
     mode: '0600'
@@ -103,7 +103,7 @@
   lineinfile:
     path: /etc/pgpool-II/pgpool.conf
     regexp: 'heartbeat_destination1'
-    line: heartbeat_destination1 = 'pgposql02'
+    line: heartbeat_destination1 = '{{ hostname2 }}'
     owner: postgres
     group: postgres
     mode: '0600'

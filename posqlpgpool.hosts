@@ -1,11 +1,11 @@
 [master]
-pgposql01 ansible_user=centos
+{{ hostname1 }} ansible_user=centos
 
 [st_slave]
-pgposql02 ansible_user=centos
+{{ hostname2 }} ansible_user=centos
 
 [nd_slave]
-pgposql03 ansible_user=centos
+{{ hostname3 }} ansible_user=centos
 
 [slave:children]
 st_slave
