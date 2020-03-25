@@ -62,6 +62,7 @@
   postgresql_ext:
     name: pgcrypto
     db: postgres
+    port: 5433
     state: present
   become: true
   become_user: postgres
@@ -69,11 +70,13 @@
 
 - name: Create a new database with name "postgis"
   postgresql_db:
+    port: 5433
     name: postgis
   tags: prerequisite
 
 - name: Connect to postgis database and set user's password with no expire date
   postgresql_user:
+    port: 5433
     db: postgis
     name: postgis
     password: postgis
@@ -83,6 +86,7 @@
 
 - name: Create extension PostGIS
   postgresql_ext:
+    port: 5433
     name: postgis
     db: postgis
     state: present
