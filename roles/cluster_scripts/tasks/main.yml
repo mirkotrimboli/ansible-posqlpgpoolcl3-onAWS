@@ -53,48 +53,52 @@
     mode: '0755'
     backup: yes
 
-- name: Copy route-{{ sec_net_int }}.sh, backing up the original if it differs from the copied version
-  copy:
-    src: /home/centos/ansible-posqlpgpoolcl3/scripts/route-netint2
-    dest: /etc/sysconfig/network-scripts/route-{{ sec_net_int }}.sh
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
+- name: Create route file for default interface
+  become: true
+  template: 
+    src=routedefault.j2
+    dest=/etc/sysconfig/network-scripts/route-{{ pri_net_int }} 
+    owner=root group=root mode=0644
+  register: copy_default_route
 
-- name: Copy rule-{{ pri_net_int }}.sh, backing up the original if it differs from the copied version
-  copy:
-    src: /home/centos/ansible-posqlpgpoolcl3/scripts/rule-netint1
-    dest: /etc/sysconfig/network-scripts/rule-{{ pri_net_int }}.sh
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
 
-- name: Copy rule-{{ sec_net_int }}.sh, backing up the original if it differs from the copied version
-  copy:
-    src: /home/centos/ansible-posqlpgpoolcl3/scripts/rule-netint2
-    dest: /etc/sysconfig/network-scripts/rule-{{ sec_net_int }}.sh
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
+- name: Create route file for vip interface
+  become: true
+  template: src=routevip.j2 dest=/etc/sysconfig/network-scripts/route-{{ sec_net_int }}
+    owner=root group=root mode=0644
+  register: copy_vip_route
 
-- name: Copy ifcfg-{{ sec_net_int }}.sh, backing up the original if it differs from the copied version
-  copy:
-    src: /home/centos/ansible-posqlpgpoolcl3/scripts/ifcfg-netint2
-    dest: /etc/sysconfig/network-scripts/ifcfg-{{ sec_net_int }}.sh
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
+- name: Create rule file for default interface
+  become: true
+  template: src=ruledefault.j2 dest=/etc/sysconfig/network-scripts/rule-{{ pri_net_int }}
+    owner=root group=root mode=0644
+  register: copy_rule_default
+
+- name: Create rule file for vip interface
+  become: true
+  template: src=rulevipdev.j2 dest=/etc/sysconfig/network-scripts/rule-{{ sec_net_int }}
+    owner=root group=root mode=0644
+  register: copy_rule_vip
+
+- name: Create vip interface config file
+  become: true
+  template: src=ifcfg-eth.j2 dest=/etc/sysconfig/network-scripts/ifcfg-{{ sec_net_int  }}
+    owner=root group=root mode=0644
+  register: create_config_file_eth  
 
 - name: Insert 100 t1 entry in /etc/iproute2/rt_tables
+  become: true
   lineinfile:
     path: /etc/iproute2/rt_tables
     line: '100 t1'
 
 - name: Insert 101 t2 entry in /etc/iproute2/rt_tables
+  become: true
   lineinfile:
     path: /etc/iproute2/rt_tables
     line: '101 t2'
+
+- name: Copy sysctl parameter
+  become: true
+  template: src=98-2netaws.conf.j2 dest=/etc/sysctl.d/98-2netaws.conf
+    owner=root group=root mode=0644
