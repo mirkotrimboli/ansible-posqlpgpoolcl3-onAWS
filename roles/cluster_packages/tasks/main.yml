@@ -5,6 +5,12 @@
     state: latest
   tags: prerequisite
 
+- name: Install unzip server packages
+  yum:
+    name: unzip
+    state: present
+  tags: prerequisite
+
 - name: Unarchive awscliv2.zip in /root
   unarchive:
     src: /home/centos/ansible-posqlpgpoolcl3/awscliv2.zip
