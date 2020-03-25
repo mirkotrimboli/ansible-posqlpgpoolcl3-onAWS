@@ -11,6 +11,12 @@
     state: present
   tags: prerequisite
 
+- name: Install epel repos
+  yum:
+    name: epel-release
+    state: present
+  tags: prerequisite
+
 - name: Unarchive awscliv2.zip in /root
   unarchive:
     src: /home/centos/ansible-posqlpgpoolcl3/awscliv2.zip
