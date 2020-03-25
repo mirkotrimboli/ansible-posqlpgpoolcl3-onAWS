@@ -6,9 +6,9 @@
       {{ item.ip }} {{ item.name }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
   loop:
-    - { name: {{ hostname1 }}, ip: {{ ipnode1 }} }
-    - { name: {{ hostname2 }}, ip: {{ ipnode2 }} }
-    - { name: {{ hostname3 }}, ip: {{ ipnode3 }} }
+    - { name: "{{ hostname1 }}", ip: "{{ ipnode1 }}" }
+    - { name: "{{ hostname2 }}", ip: "{{ ipnode2 }}" }
+    - { name: "{{ hostname3 }}", ip: "{{ ipnode3 }}" }
 
 - name: Set authorized key taken from file for root
   authorized_key:
