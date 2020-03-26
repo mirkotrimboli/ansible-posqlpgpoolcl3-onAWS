@@ -4,7 +4,7 @@ Produzione di un cluster PostgreSQL + PgPool + postGIS con 3 nodi su AWS
 # Prerequisiti AWS
 Assicurarsi che sull'ambiente AWS sia presente:
 
-* Un volume aggiuntivo per i dati associato a ciascun nodo
+* Un volume aggiuntivo per i dati associato a ciascun nodo PostgreSQL
 * Service Group con regole Inbound aperte per la connessione SSH
 * che sia stato dato un ip alla scheda di rete primaria
 * che sia stata creata una NetworkInterface non associata ad alcun nodo

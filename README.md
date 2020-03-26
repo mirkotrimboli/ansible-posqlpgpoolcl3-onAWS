@@ -4,7 +4,7 @@ Delivery of a PostgreSQL+PgPool+postGIS Cluster with 3 nodes on AWS
 # AWS prerequisites
 Make sure that the AWS environment has:
 
-* An additional data volume associated with each node
+* An additional data volume associated with each PostgreSQL node
 * Service Group with open Inbound rules for SSH connection
 * that an ip was given to the primary network card
 * that a NetworkInterface not associated with any node has been created

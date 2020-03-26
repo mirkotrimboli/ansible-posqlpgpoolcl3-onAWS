@@ -35,23 +35,25 @@
     mode: '0777'
     backup: yes
 
-- name: Copy aws-escalation.sh, backing up the original if it differs from the copied version
-  copy:
-    src: /home/centos/ansible-posqlpgpoolcl3/scripts/aws-escalation.sh
+- name: Create aws-escalation script
+  become: true
+  template:
+    src: aws-escalation.j2
     dest: /usr/local/bin/aws-escalation.sh
     owner: root
     group: root
-    mode: '0755'
-    backup: yes
+    mode: 0755
+  tags: configuration
 
-- name: Copy aws-de-escalation.sh, backing up the original if it differs from the copied version
-  copy:
-    src: /home/centos/ansible-posqlpgpoolcl3/scripts/aws-de-escalation.sh
+- name: Create aws-de-escalation script
+  become: true
+  template:
+    src: aws-de-escalation.j2
     dest: /usr/local/bin/aws-de-escalation.sh
     owner: root
     group: root
-    mode: '0755'
-    backup: yes
+    mode: 0755
+  tags: configuration
 
 - name: Create route file for default interface
   become: true
