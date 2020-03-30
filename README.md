@@ -7,7 +7,7 @@ Make sure that the AWS environment has:
 * An additional data volume associated with each PostgreSQL node
 * Service Group with open Inbound rules for SSH connection
 * that an ip was given to the primary network card
-* that a NetworkInterface not associated with any node has been created
+* that a Network Interface not associated with any node has been created in the same subnet and in same Service Groups
 
 On the Ansible server:
 

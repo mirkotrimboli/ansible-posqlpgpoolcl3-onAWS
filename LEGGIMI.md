@@ -7,7 +7,7 @@ Assicurarsi che sull'ambiente AWS sia presente:
 * Un volume aggiuntivo per i dati associato a ciascun nodo PostgreSQL
 * Service Group con regole Inbound aperte per la connessione SSH
 * che sia stato dato un ip alla scheda di rete primaria di ogni nodo
-* che sia stata creata una NetworkInterface non associata ad alcun nodo
+* che sia stata creata una NetworkInterface nella stessa sottorete e negli stessi Service Groups, ma non associata ad alcun nodo
 
 Sul server Ansible:
 
