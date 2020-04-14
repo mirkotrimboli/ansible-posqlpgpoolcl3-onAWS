@@ -66,8 +66,8 @@
     group: postgres
     mode: '0750'
     state: directory
-  when: xfs_format is succeeded
-  register: dir_created
+  when: mounted is succeeded
+  register: datadir_created
   tags: prerequisite 
 
 - name: Create directory for mount postgresql archive
@@ -77,6 +77,6 @@
     group: postgres
     mode: '0750'
     state: directory
-  when: xfs_format is succeeded
-  register: dir_created
+  when: datadir_created is succeeded
+  register: archivedir_created
   tags: prerequisite
